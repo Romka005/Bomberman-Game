@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bomberman</title>
+  <link rel="stylesheet" href="css.css" />
+</head>
+<body>
+  <div class="game-container">
+    <!-- HUD -->
+    <div class="hud">
+      <!-- Левая часть -->
+      <div class="hud-left">
+        <div class="hud-icon"><img src="img/extrabomb.png" alt="Bomb"> <span id="bomb-count">1</span></div>
+        <div class="hud-icon"><img src="img/extraradius.png" alt="Power"> <span id="power-count">1</span></div>
+        <div class="hud-icon"><img src="img/extrahp.png" alt="Speed"> <span id="speed-count">1</span></div>
+      </div>
+
+      <!-- Центр -->
+      <div class="hud-center">
+        <div class="timer" id="timer">3:00</div>
+        <div class="stage">ЭТАП 1</div>
+      </div>
+
+      <!-- Правая часть -->
+      <div class="hud-right">
+        <div class="score">Счёт <span id="score">000000</span></div>
+        <div class="lives"> <img src="img/player.png" alt=""> <span class="livesNum" id="lives">3</span></div>
+      </div>
+    </div>
+
+    <!-- Легенда -->
+    <div id="legend" class="legend controls">
+      <h2>Управление</h2>
+      <div class="legend-pic" id="controls">
+        <img src="img/controls.png" alt="Стрелочки" class="legend-icon">
+        <div class="legend-info">
+          <h3>Ходьба</h3>
+        </div>
+      </div>
+      <div class="legend-pic" id="space">
+        <img src="img/space.png" alt="Пробел" class="legend-icon">
+        <div class="legend-info">
+          <h3>Поставить бомбу</h3>
+        </div>
+      </div>
+      <div class="legend-pic" id="e">
+        <img src="img/e.png" alt="E" class="legend-icon">
+        <div class="legend-info">
+          <h3>Использовать</h3>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="legend" class="legend upgrades">
+      <h2>Улучшения</h2>
+      <div class="legend-pic inactive" id="secondBomb">
+        <img src="img/extrabomb.png" alt="Вторая бомба" class="legend-icon">
+        <div class="legend-info">
+          <h3>Вторая бомба</h3>
+          <p>Позволяет ставить две бомбы одновременно.</p>
+        </div>
+      </div>
+      <div class="legend-pic inactive" id="radiusUpgrade">
+        <img src="img/extraradius.png" alt="Увеличение радиуса бомбы" class="legend-icon">
+        <div class="legend-info">
+          <h3>Увеличение радиуса</h3>
+          <p>Увеличивает радиус взрыва бомбы.</p>
+        </div>
+      </div>
+      <div class="legend-pic inactive" id="healthUpgrade">
+        <img src="img/extrahp.png" alt="Хилка" class="legend-icon">
+        <div class="legend-info">
+          <h3>Хилка</h3>
+          <p>Восстанавливает +1 к здоровью.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="legend" class="legend enemies">
+      <h2>Враги</h2>
+      <div class="legend-pic" id="secondBomb">
+        <img src="img/enemy.png" alt="Адольф Гитлер" class="legend-icon">
+        <div class="legend-info">
+          <h3>Адольф Гитлер</h3>
+          <p>Жестокий диктатор, фюрер Третьего Рейха. Лучше не подходить к нему близко, так как он может убить, но это не значит, что его нельзя подорвать.</p>
+        </div>
+      </div>
+      <div class="legend-pic" id="radiusUpgrade">
+        <img src="img/enemy_angry.png" alt="ИГИЛовец" class="legend-icon">
+        <div class="legend-info">
+          <h3>ИГИЛовец*</h3>
+          <p>Террорист. Не менее опасен, чем Гитлер. После смерти оставляет бомбу, которая работает также, как и твои бомбы.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="note">
+      <p><span>*</span> - Террористическая группировка "Исламское государство" (ИГ) запрещена в России.</p>
+    </div>
+  </div>
+
+  <script src="js.js"></script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+/* Сброс стандартных отступов и настройка фона для всей страницы */
+body {
+  margin: 0; /* Убираем стандартные отступы браузера */
+  background: url("img/background.png.png"); /* Фоновое изображение */
+  background-size: cover; /* Растягиваем фон на всю область */
+  background-repeat: no-repeat; /* Запрещаем повторение фона */
+  display: flex; /* Используем flex-разметку */
+  justify-content: center; /* Выравниваем по горизонтали по центру */
+  align-items: start; /* Выравниваем по вертикали по верхнему краю */
+  height: 100vh; /* Высота равна высоте видимой области (viewport height) */
+  font-family: 'Arial', sans-serif; /* Шрифт по умолчанию */
+  color: white; /* Цвет текста */
+}
+
+/* Основной контейнер игры */
+.game-container {
+  display: flex; /* Flex-контейнер */
+  flex-direction: column; /* Элементы располагаются вертикально */
+  align-items: center; /* Выравнивание по центру горизонтали */
+  width: 700px; /* Фиксированная ширина */
+  padding-top: 10px; /* Отступ сверху */
+}
+
+/* Стили для HUD (интерфейса игрока) */
+.hud {
+  display: flex; /* Flex-контейнер */
+  justify-content: space-between; /* Распределение пространства между элементами */
+  align-items: center; /* Выравнивание по центру вертикали */
+  background-color: rgba(10, 10, 10, 0.85); /* Темный полупрозрачный фон */
+  width: 100%; /* Ширина на всю доступную область */
+  padding: 10px 20px; /* Внутренние отступы */
+  border-radius: 8px; /* Скругление углов */
+  margin-bottom: 10px; /* Отступ снизу */
+  box-sizing: border-box; /* Учет padding в общей ширине */
+}
+
+/* Левая часть HUD */
+.hud-left,
+/* Правая часть HUD (общие стили) */
+.hud-right {
+  display: flex; /* Flex-контейнер */
+  gap: 20px; /* Расстояние между элементами */
+  align-items: center; /* Выравнивание по центру вертикали */
+}
+
+/* Стили для иконок бонусов */
+.hud-icon {
+  display: flex; /* Flex-контейнер */
+  align-items: center; /* Выравнивание по центру вертикали */
+  gap: 5px; /* Расстояние между элементами */
+}
+
+/* Стили для изображений в иконках */
+.hud-icon img {
+  width: 20px; /* Ширина изображения */
+  height: 20px; /* Высота изображения */
+}
+
+/* Позиционирование счетчика жизней */
+.livesNum {
+  position: relative; /* Относительное позиционирование */
+  top: -8px; /* Смещение вверх */
+}
+
+/* Центральная часть HUD */
+.hud-center {
+  text-align: center; /* Выравнивание текста по центру */
+}
+
+/* Стили для таймера */
+.timer {
+  font-size: 20px; /* Размер шрифта */
+  font-weight: bold; /* Жирное начертание */
+}
+
+/* Стили для отображения уровня */
+.stage {
+  font-size: 14px; /* Размер шрифта */
+  color: #ccc; /* Цвет текста */
+}
+
+/* Стили для игрового поля */
+.grid {
+  display: grid; /* Используем grid-разметку */
+  grid-template-columns: repeat(15, 40px); /* 15 колонок по 40px */
+  grid-template-rows: repeat(13, 40px); /* 13 строк по 40px */
+  gap: 0; /* Нет промежутков между ячейками */
+}
+
+/* Стили для клетки игрового поля */
+.ground {
+  width: 40px; /* Ширина */
+  height: 40px; /* Высота */
+  background-image: url("img/ground.png"); /* Фоновое изображение */
+  background-size: cover; /* Растягиваем изображение на всю область */
+  background-repeat: no-repeat; /* Запрещаем повторение */
+  background-position: center; /* Выравнивание по центру */
+  position: relative; /* Относительное позиционирование */
+  border: 1px solid #444; /* Граница */
+  box-sizing: border-box; /* Учет границы в размерах */
+}
+
+.door {
+  background-image: url('img/door.png'); 
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+}
+
+/* Стили для игрока */
+.player {
+  background-image: url("img/player.png"); /* Изображение игрока */
+  z-index: 7; /* Уровень слоя (выше блоков) */
+}
+
+/* Стили для врага */
+.enemy {
+  background-image: url("img/enemy.png"); /* Изображение врага */
+  z-index: 3; /* Уровень слоя */
+}
+
+.explosive {
+  background-image: url("img/enemy_angry.png"); /* Изображение врага */
+}
+
+
+/* Стили для бомбы */
+.bomb {
+  background-image: url("img/bomb.png"); /* Изображение бомбы */
+  animation: pulse 1s infinite; /* Анимация пульсации */
+  z-index: 4; /* Уровень слоя (выше игрока и врагов) */
+}
+
+/* Стили для взрыва */
+.explosion {
+  background-image: url("img/explosion.png"); /* Изображение взрыва */
+  animation: fade 0.5s forwards; /* Анимация исчезновения */
+  z-index: 5; /* Уровень слоя (самый верхний) */
+}
+
+/* Общие стили для игрока, врага, бомбы и взрыва */
+.player,
+.enemy,
+.bomb,
+.explosion {
+  width: 100%; /* Ширина 100% родителя */
+  height: 100%; /* Высота 100% родителя */
+  background-size: contain; /* Вписываем изображение в область */
+  background-repeat: no-repeat; /* Запрещаем повторение */
+  background-position: center; /* Выравнивание по центру */
+  position: absolute; /* Абсолютное позиционирование */
+}
+
+/* Стили для несгораемого блока */
+.unbreakable-block {
+  background-image: url("img/unbreakable.png"); /* Изображение блока */
+  z-index: 2; /* Уровень слоя (ниже игрока) */
+}
+
+/* Стили для разрушаемого блока */
+.breakable-block {
+  background-image: url("img/breakable.png"); /* Изображение блока */
+  z-index: 2; /* Уровень слоя */
+}
+
+/* Анимация пульсации для бомбы */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; } /* Начальное состояние */
+  50% { transform: scale(1.1); opacity: 0.8; } /* Увеличение и уменьшение прозрачности */
+  100% { transform: scale(1); opacity: 1; } /* Возврат к исходному состоянию */
+}
+
+/* Анимация исчезновения для взрыва */
+@keyframes fade {
+  from { opacity: 1; } /* Начальная прозрачность */
+  to { opacity: 0; } /* Конечная прозрачность (полностью прозрачный) */
+}
+
+.bonus-icon {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  z-index: 3;
+  top: 50%; /* Центрируем по вертикали */
+  left: 50%; /* Центрируем по горизонтали */
+  transform: translate(-50%, -50%); /* Сдвигаем элемент так, чтобы центр был в середине */
+}
+
+.legend {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 250px;
+  padding: 15px;
+}
+
+.controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 190px;
+}
+
+.upgrades {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.enemies {
+  position: absolute;
+  top: 350px;
+  right: 20px;
+}
+
+.legend h2 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.legend-pic {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.legend-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.legend-info h3 {
+  font-size: 16px;
+  margin: 0;
+  color: #ffcc00;
+}
+
+.legend-info p {
+  font-size: 12px;
+  margin: 5px 0 0 0;
+}
+
+.legend-pic.inactive .legend-icon {
+  opacity: 0.5;
+}
+
+
+.note {
+  position: fixed;
+  bottom: 20px;  /* Расположение с отступом от верхнего края */
+  right: 20px;  /* Расположение с отступом от правого края */
+  width: 450px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-family: Arial, sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;  /* Убедимся, что блок будет поверх других элементов */
+}
+
+.note span {
+  font-size: 14px;
+  color: #ffcc00;
+}
+
+.note p {
+  font-size: 12px;
+  margin: 0;
+  color: white;
+}
