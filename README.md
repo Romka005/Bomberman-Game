@@ -1,2 +1,2 @@
-## 🎮 Играть онлайн в Bomberman-Game 💣
+## 🎮 Играть онлайн в Bomberman-Game 
 👉[Запустить игру](https://romka005.github.io/Bomberman-Game/)👈
