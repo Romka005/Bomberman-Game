@@ -1,3 +1,3 @@
 # Bomberman-Game
-## 🎮 Играть онлайн в Bomberman-Game 
-👉[Запустить игру](https://romka005.github.io/Bomberman-Game/)👈
+## 💣 A reimagining of the old arcade game Bomber Man 💣
+👉[Launch the game](https://romka005.github.io/Bomberman-Game/)👈
